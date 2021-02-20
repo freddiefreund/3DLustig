@@ -13,6 +13,7 @@ public class Throw : MonoBehaviour
     [SerializeField] float maxChargeTime = 1.5f;
 
     [SerializeField] private Image crosshair;
+    [SerializeField] float liveTime = 2f;
     
     float timeStamp = 0;
     private const float defaultCrosshairAlpha = 0.1f;
@@ -46,6 +47,7 @@ public class Throw : MonoBehaviour
             var obj = Instantiate(ball, spawnLocation, cam.rotation);
             obj.GetComponent<Rigidbody>().velocity = cam.forward * shootPower * 50;
             setCrosshairAlpha();
+            Destroy(obj.gameObject, liveTime);
         }
     }
 
