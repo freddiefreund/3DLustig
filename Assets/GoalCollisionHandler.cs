@@ -16,11 +16,8 @@ public class GoalCollisionHandler : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            _audioSource.Play();
+        _audioSource.Play();
             _succesParticleSystem.Play();
             Debug.Log("You Scored: " + scoreValue + " Points!");
-        }
     }
 }
