@@ -14,10 +14,10 @@ public class GoalCollisionHandler : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         _audioSource.Play();
-            _succesParticleSystem.Play();
-            Debug.Log("You Scored: " + scoreValue + " Points!");
+        _succesParticleSystem.Play();
+        Debug.Log("You Scored: " + scoreValue + " Points!");
     }
 }
