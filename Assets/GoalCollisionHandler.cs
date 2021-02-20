@@ -6,11 +6,20 @@ using UnityEngine;
 public class GoalCollisionHandler : MonoBehaviour
 {
     [SerializeField] private int scoreValue;
+    [SerializeField] private ParticleSystem _succesParticleSystem;
+    private AudioSource _audioSource;
+
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
 
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            _audioSource.Play();
+            _succesParticleSystem.Play();
             Debug.Log("You Scored: " + scoreValue + " Points!");
         }
     }
