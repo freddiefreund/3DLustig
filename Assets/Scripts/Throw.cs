@@ -5,14 +5,13 @@ using UnityEngine;
 
 public class Throw : MonoBehaviour
 {
-    [SerializeField] Transform camera;
-    [SerializeField] GameObject ball;
+    [SerializeField] Transform cam = default;
+    [SerializeField] GameObject ball = default;
     
     [SerializeField] float shootPowerMultiplier = 1f;
     [SerializeField] float maxChargeTime = 2f;
     
     float timeStamp = 0;
-    float shootPower;
     
     void Update()
     {
@@ -25,9 +24,9 @@ public class Throw : MonoBehaviour
         {
             float shootPower = Time.time - timeStamp;
             shootPower = Mathf.Clamp(shootPower, 0.1f, maxChargeTime);
-            var spawnLocation = camera.position + camera.forward * 1;   
-            var obj = Instantiate(ball, spawnLocation, camera.rotation);
-            obj.GetComponent<Rigidbody>().velocity = camera.forward * shootPower * 50;
+            var spawnLocation = cam.position + cam.forward * shootPowerMultiplier;   
+            var obj = Instantiate(ball, spawnLocation, cam.rotation);
+            obj.GetComponent<Rigidbody>().velocity = cam.forward * shootPower * 50;
         }
     }
 }
